@@ -1,4 +1,4 @@
-package mrriegel.storagenetwork.config;
+package mrriegel.decoy;
 
 import java.io.File;
 
@@ -8,25 +8,19 @@ public class ConfigHandler {
 
 	public static Configuration config;
 
-	public static boolean smallFont, energyNeeded, untouchable;
-	public static int energyCapacity, energyMultiplier, rangeWirelessAccessor, itemBoxCapacity, fluidBoxCapacity;
+	public static int range;
+	public static boolean ignorePlayer, negateExplosion;
 
 	public static void refreshConfig(File file) {
 		config = new Configuration(file);
 		config.load();
-		smallFont = config.get(Configuration.CATEGORY_CLIENT, "smallFont", true).getBoolean();
-		untouchable = config.get(Configuration.CATEGORY_GENERAL, "invisible=untouchable", true).getBoolean();
-		energyNeeded = config.get(Configuration.CATEGORY_GENERAL, "energyNeeded", true).getBoolean();
-		energyCapacity = config.get(Configuration.CATEGORY_GENERAL, "energyCapacity", 32000).getInt();
-		energyMultiplier = config.get(Configuration.CATEGORY_GENERAL, "energyMultiplier", 15).getInt();
-		rangeWirelessAccessor = config.get(Configuration.CATEGORY_GENERAL, "rangeWirelessAccessor", 32).getInt();
-		itemBoxCapacity = config.get(Configuration.CATEGORY_GENERAL, "itemBoxCapacity", 200).getInt();
-		fluidBoxCapacity = config.get(Configuration.CATEGORY_GENERAL, "fluidBoxCapacity", 64).getInt();
 
+		range = config.getInt("range", Configuration.CATEGORY_GENERAL, 6, 1, 64, "Decoys will attract monster in this range.");
+		ignorePlayer = config.getBoolean("ignorePlayer", Configuration.CATEGORY_GENERAL, false, "If enabled monsters will ignore players while hugging the decoy.");
+		negateExplosion = config.getBoolean("negateExplosion", Configuration.CATEGORY_GENERAL, true, "If enabled explosion by creepers near are negated.");
 		if (config.hasChanged()) {
 			config.save();
 		}
 	}
 
 }
-

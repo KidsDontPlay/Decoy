@@ -1,4 +1,4 @@
-package mrriegel.storagenetwork;
+package mrriegel.decoy;
 
 import java.awt.Color;
 
@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class RenderDecoy extends RenderLiving<EntityDecoy> {
@@ -41,4 +40,3 @@ public class RenderDecoy extends RenderLiving<EntityDecoy> {
 	}
 
 }
-
