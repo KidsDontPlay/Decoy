@@ -54,7 +54,8 @@ public class EntityDecoy extends EntityCreature {
 		this.tasks.addTask(0, new EntityAISwimming(this));
 		this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityMob.class, 6.0F));
 		this.tasks.addTask(8, new EntityAILookIdle(this));
-		this.tasks.addTask(6, new EntityAIGoHome(this, 1.2, 2));
+		if (ConfigHandler.decoyHome)
+			this.tasks.addTask(6, new EntityAIGoHome(this, 1.2, 2));
 
 	}
 
@@ -68,7 +69,7 @@ public class EntityDecoy extends EntityCreature {
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1000000.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10000.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.35D);
 		this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(2.0);
 		this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(40.0D);
@@ -117,6 +118,8 @@ public class EntityDecoy extends EntityCreature {
 	@Override
 	public void onEntityUpdate() {
 		super.onEntityUpdate();
+		if (ConfigHandler.maxAge > 0 && this.ticksExisted / 20 >= ConfigHandler.maxAge)
+			setDead();
 		setHealth(getMaxHealth());
 	}
 

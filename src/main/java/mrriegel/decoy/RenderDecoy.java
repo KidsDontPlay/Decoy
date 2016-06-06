@@ -12,7 +12,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class RenderDecoy extends RenderLiving<EntityDecoy> {
 
-	private static final ResourceLocation PIG_TEXTURES = new ResourceLocation("textures/entity/pig/pig.png");
+	private static final ResourceLocation PIG_TEXTURES = new ResourceLocation(Decoy.MODID + ":textures/entity/decoy.png");
 
 	public RenderDecoy(RenderManager renderManagerIn, ModelBase modelBaseIn, float shadowSizeIn) {
 		super(renderManagerIn, modelBaseIn, shadowSizeIn);
@@ -21,6 +21,8 @@ public class RenderDecoy extends RenderLiving<EntityDecoy> {
 	@Override
 	protected int getColorMultiplier(EntityDecoy entitylivingbaseIn, float lightBrightness, float partialTickTime) {
 		int fluidColor = entitylivingbaseIn.getColor();
+		if (ConfigHandler.color != -1)
+			fluidColor = ConfigHandler.color;
 		int x = new Color((fluidColor >> 16) & 0xFF, (fluidColor >> 8) & 0xFF, (fluidColor) & 0xFF, 128).getRGB();
 		return x;
 	}
