@@ -2,19 +2,20 @@ package mrriegel.decoy;
 
 import java.util.List;
 
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.Vec3d;
 
 public class EntityAIFindDecoy extends EntityAIBase {
-	private EntityMob entity;
+	private EntityLiving entity;
 	private double xPosition;
 	private double yPosition;
 	private double zPosition;
 	private double speed;
 
-	public EntityAIFindDecoy(EntityMob creatureIn, double speedIn) {
+	public EntityAIFindDecoy(EntityLiving creatureIn, double speedIn) {
 		this.entity = creatureIn;
 		this.speed = speedIn;
 		this.setMutexBits(1);
@@ -26,7 +27,7 @@ public class EntityAIFindDecoy extends EntityAIBase {
 		List<EntityDecoy> mobs = entity.worldObj.getEntitiesWithinAABB(EntityDecoy.class, new AxisAlignedBB(entity.posX - range, entity.posY - range, entity.posZ - range, entity.posX + range, entity.posY + range, entity.posZ + range));
 		if (mobs.isEmpty())
 			return false;
-	
+
 		Vec3d vec3d = mobs.get(0).getPositionVector();
 
 		if (vec3d == null) {

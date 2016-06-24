@@ -2,10 +2,12 @@ package mrriegel.decoy;
 
 import java.util.List;
 
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -48,8 +50,8 @@ public class CommonProxy {
 
 	@SubscribeEvent
 	public void join(EntityJoinWorldEvent e) {
-		if (e.getEntity() instanceof EntityMob) {
-			EntityMob el = (EntityMob) e.getEntity();
+		if (e.getEntity() instanceof IMob && e.getEntity() instanceof EntityLiving) {
+			EntityLiving el = (EntityLiving) e.getEntity();
 			boolean contain1 = false;
 			if (ConfigHandler.ignorePlayer) {
 				for (EntityAITasks.EntityAITaskEntry en : el.targetTasks.taskEntries)
