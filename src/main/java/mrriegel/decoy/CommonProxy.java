@@ -6,7 +6,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -59,8 +58,9 @@ public class CommonProxy {
 						contain1 = true;
 						break;
 					}
-				if (!contain1)
+				if (!contain1) {
 					el.targetTasks.addTask(-2, new EntityAIFindDecoy(el, 1.2));
+				}
 			}
 			boolean contain2 = false;
 			for (EntityAITasks.EntityAITaskEntry en : el.tasks.taskEntries)

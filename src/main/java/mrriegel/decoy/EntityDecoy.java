@@ -10,7 +10,6 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -82,6 +81,8 @@ public class EntityDecoy extends EntityCreature {
 	@Override
 	public void onKillCommand() {
 		setDead();
+		if (!this.worldObj.isRemote)
+			this.dropItem(Decoy.decoy, 1);
 	}
 
 	@Override

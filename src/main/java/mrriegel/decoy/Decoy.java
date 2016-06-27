@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 @Mod(modid = Decoy.MODID, name = Decoy.MODNAME, version = Decoy.VERSION)
 public class Decoy {
 	public static final String MODID = "decoy";
-	public static final String VERSION = "1.0.1";
+	public static final String VERSION = "1.0.2";
 	public static final String MODNAME = "Decoy";
 
 	@Instance(Decoy.MODID)
